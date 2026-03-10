@@ -1,45 +1,35 @@
-Dataset Bias Audit System
+⚖️ Dataset Bias Audit System
 
 A Machine Learning fairness auditing tool that detects bias in datasets and model predictions.
-The system trains a classification model and evaluates whether predictions are fair across sensitive attributes such as gender, race, or other demographic variables.
+The system trains a classification model and evaluates whether predictions are fair across sensitive attributes such as gender, race, or demographic variables.
 
-The project includes an interactive Streamlit dashboard where users can upload any dataset and analyze bias automatically.
+The project includes an interactive Streamlit dashboard where users can upload datasets and analyze bias automatically.
 
-Project Overview
+🚀 Project Overview
 
-Machine learning models can unintentionally learn biased patterns from data. This project provides a system that:
+Machine learning models can unintentionally learn biased patterns from data.
+This system helps detect such issues by providing a bias auditing pipeline.
 
-Trains a machine learning model on uploaded datasets
+The system performs:
 
-Detects potential bias in predictions
+Dataset preprocessing
 
-Evaluates fairness using statistical metrics
+Machine learning model training
 
-Provides a user-friendly interface for bias analysis
-
-This project demonstrates concepts from:
-
-Responsible AI
-
-Fair Machine Learning
-
-Model evaluation and auditing
-
-Features
-
-Upload any CSV dataset
-
-Automatic data preprocessing
-
-Random Forest classification model
+Prediction generation
 
 Bias detection using fairness metrics
 
-Interactive Streamlit dashboard
+✨ Features
 
-Fast analysis suitable for large datasets
+✔ Upload any CSV dataset
+✔ Automatic data preprocessing
+✔ Random Forest classification model
+✔ Bias detection using fairness metrics
+✔ Interactive Streamlit dashboard
+✔ Fast bias analysis
 
-System Architecture
+🧠 System Architecture
 Dataset Upload
        ↓
 Data Preprocessing
@@ -53,13 +43,12 @@ Fairness Evaluation
 Bias Detection
        ↓
 Results Dashboard
-Technologies Used
-
-Programming Language:
+🛠 Technologies Used
+Programming Language
 
 Python
 
-Machine Learning Libraries:
+Machine Learning Libraries
 
 scikit-learn
 
@@ -67,15 +56,15 @@ pandas
 
 numpy
 
-Fairness Analysis:
+Fairness Analysis
 
 Fairlearn
 
-Visualization and Interface:
+Interface
 
 Streamlit
 
-Project Structure
+📁 Project Structure
 AML/
 │
 ├── data/
@@ -85,91 +74,93 @@ AML/
 │   ├── preprocessing.py
 │   ├── model.py
 │   ├── bias_detection.py
-│   ├── pipeline.py
+│   └── pipeline.py
 │
 ├── app/
 │   └── dashboard.py
 │
 ├── requirements.txt
 └── README.md
-Installation
+⚙️ Installation
 
 Clone the repository:
 
 git clone <repository-url>
 cd AML
 
-Install dependencies:
+Install required dependencies:
 
 pip install -r requirements.txt
-Running the Application
+▶ Running the Application
 
 Start the Streamlit dashboard:
 
 streamlit run app/dashboard.py
 
-Then open the browser at:
+Open the application in your browser:
 
 http://localhost:8501
-How to Use
+📊 How to Use
 
-Upload a dataset in CSV format
+1️⃣ Upload a CSV dataset
+2️⃣ Select the target column
+3️⃣ Select the sensitive attribute
+4️⃣ Click Run Bias Analysis
+5️⃣ View model accuracy and bias results
 
-Select the target column (prediction variable)
-
-Select the sensitive attribute (e.g., gender, race)
-
-Click Run Bias Analysis
-
-View model accuracy and bias results
-
-Example Output
+📈 Example Output
 Model Accuracy: 0.85
 
 Bias Score: 0.12
 
 Bias Status: Bias Detected
-
-Interpretation:
-
+Bias Interpretation
 Bias Score	Meaning
 < 0.05	Fair
 0.05 – 0.10	Mild Bias
 > 0.10	Bias Detected
-Example Use Cases
+💡 Example Use Cases
 
 Detect bias in hiring datasets
 
 Evaluate fairness in loan approval models
 
-Analyze bias in income prediction datasets
+Analyze bias in income prediction systems
 
-Study fairness in classification systems
+Study fairness in classification algorithms
 
-Future Improvements
+🔮 Future Improvements
 
-Potential extensions include:
+Possible enhancements include:
 
-Automatic bias detection across all features
+Automatic bias detection across all dataset columns
 
-Visualization dashboards for fairness metrics
+Bias visualization dashboards
 
-Support for multiple fairness metrics
+Multiple fairness metrics (Equalized Odds, Disparate Impact)
 
-Model comparison (Logistic Regression, Random Forest, XGBoost)
+Model comparison (Random Forest, XGBoost, Neural Networks)
 
-Bias mitigation algorithms
+Advanced bias mitigation techniques
 
-Educational Purpose
+🎓 Educational Purpose
 
-This project is designed for:
+This project demonstrates key concepts in:
+
+Responsible AI
+
+Fair Machine Learning
+
+Model evaluation and auditing
+
+It is suitable for:
 
 Advanced Machine Learning coursework
 
-Responsible AI research demonstrations
+AI fairness research demonstrations
 
-Bias detection and fairness evaluation studies
+Bias detection experiments
 
-License
+📜 License
 
 This project is intended for educational and research purposes.
