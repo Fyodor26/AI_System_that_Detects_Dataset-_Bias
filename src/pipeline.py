@@ -48,3 +48,54 @@ def run_bias_pipeline(df, target, sensitive):
         "bias_score": bias_score,
         "bias_status": status
     }
+
+def run_bias_scan(df, target):
+
+    # preprocessing
+    df = preprocess_data(df)
+
+    # convert target to binary
+    if df[target].nunique() > 2:
+        median_val = df[target].median()
+        df[target] = (df[target] > median_val).astype(int)
+    else:
+        df[target] = df[target].astype("category").cat.codes
+
+    (
+        model,
+        X_train,
+        X_test,
+        y_train,
+        y_test,
+        pred,
+        acc,
+        train_index,
+        test_index
+    ) = train_model(df, target)
+
+    results = []
+
+    # loop through all columns
+    for col in df.columns:
+
+        if col == target:
+            continue
+
+        try:
+            sensitive_test = df.loc[test_index, col]
+
+            bias_score = detect_bias(
+                y_test,
+                pred,
+                sensitive_test
+            )
+
+            results.append((col, abs(bias_score)))
+
+        except:
+            continue
+
+    # sort columns by bias (highest first)
+    results = sorted(results, key=lambda x: x[1], reverse=True)
+
+    return acc, results

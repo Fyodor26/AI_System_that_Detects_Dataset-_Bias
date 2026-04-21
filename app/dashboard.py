@@ -5,8 +5,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import streamlit as st
 import pandas as pd
-
-from src.pipeline import run_bias_pipeline
+import matplotlib.pyplot as plt
+from src.pipeline import run_bias_pipeline, run_bias_scan   # ✅ added import
 
 st.title("⚖️ Dataset Bias Audit System")
 
@@ -33,6 +33,9 @@ if uploaded_file:
     target = st.selectbox("Select Target Column", columns)
     sensitive = st.selectbox("Select Sensitive Attribute", columns)
 
+    # -------------------------------
+    # Single Bias Analysis
+    # -------------------------------
     if st.button("Run Bias Analysis"):
 
         with st.spinner("Running ML pipeline..."):
@@ -49,3 +52,40 @@ if uploaded_file:
 
         st.subheader("Bias Status")
         st.write(results["bias_status"])
+
+    # -------------------------------
+    # Full Bias Scan (NEW FEATURE)
+    # -------------------------------
+    # -------------------------------
+# Full Bias Scan
+# -------------------------------
+if st.button("Run Full Bias Scan"):
+
+    with st.spinner("Scanning all columns for bias..."):
+
+        acc, ranking = run_bias_scan(df, target)
+
+    st.success("Scan Complete")
+
+    # Accuracy
+    st.subheader("Model Accuracy")
+    st.write(acc)
+
+    # Ranking
+    st.subheader("Bias Ranking")
+
+    for i, (col, score) in enumerate(ranking, 1):
+        st.write(f"{i}. {col} → {score:.3f}")
+
+    # Visualization
+    import matplotlib.pyplot as plt
+
+    cols = [col for col, score in ranking]
+    scores = [score for col, score in ranking]
+
+    fig, ax = plt.subplots()
+    ax.barh(cols[::-1], scores[::-1])
+    ax.set_xlabel("Bias Score")
+    ax.set_title("Bias Ranking (All Features)")
+
+    st.pyplot(fig)
